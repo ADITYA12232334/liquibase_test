@@ -31,8 +31,9 @@ jobs:
       - name: Install Liquibase
         run: |
           curl -L https://github.com/liquibase/liquibase/releases/download/v4.27.0/liquibase-4.27.0.tar.gz -o liquibase.tar.gz
-          tar -xzf liquibase.tar.gz
-          sudo ln -s $PWD/liquibase /usr/local/bin/liquibase
+          mkdir liquibase-bin
+          tar -xzf liquibase.tar.gz -C liquibase-bin --strip-components=1
+          sudo ln -s $PWD/liquibase-bin/liquibase /usr/local/bin/liquibase
 
       - name: Wait for DB
         run: sleep 10
