@@ -1,0 +1,28 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 001-create-users
+      author: aditya
+
+      changes:
+        - createTable:
+            tableName: users
+
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP

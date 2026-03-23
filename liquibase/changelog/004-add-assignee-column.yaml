@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-add-assignee-column
+      author: aditya
+
+      changes:
+        - addColumn:
+            tableName: tasks
+            columns:
+              - column:
+                  name: assignee_id
+                  type: BIGINT
+
+        - addForeignKeyConstraint:
+            baseTableName: tasks
+            baseColumnNames: assignee_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_tasks_assignee

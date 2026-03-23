@@ -1,0 +1,32 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 003-create-tasks
+      author: aditya
+
+      changes:
+        - createTable:
+            tableName: tasks
+
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+
+              - column:
+                  name: project_id
+                  type: INTEGER
+                
+        - addForeignKeyConstraint:
+            baseTableName: tasks
+            baseColumnNames: project_id
+            referencedTableName: projects
+            referencedColumnNames: id
+            constraintName: fk_tasks_project
+            onDelete: CASCADE

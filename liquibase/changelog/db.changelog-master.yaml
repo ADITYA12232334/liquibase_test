@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - include:
+      file: 001-create-users.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 002-create-projects.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 003-create-tasks.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 004-add-assignee-column.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 005-add-task-status.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 006-create-comments-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 007-seed-admin-user.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 008-create-attachments-table.yaml
+      relativeToChangelogFile: true
+      

@@ -1,0 +1,28 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 002-create-projects
+      author: aditya
+
+      changes:
+        - createTable:
+            tableName: projects
+
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: owner_id
+                  type: INT
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP

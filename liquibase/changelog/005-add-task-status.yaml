@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-add-task-status
+      author: aditya
+
+      changes:
+        - addColumn:
+            tableName: tasks
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR(50)
+                  defaultValue: "PENDING"

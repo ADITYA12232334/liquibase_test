@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 007-seed-admin-user
+      author: aditya
+      context: dev   # 👈 IMPORTANT (explained below)
+
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: name
+                  value: "Admin User"
+              - column:
+                  name: email
+                  value: "admin@example.com"
+
+        - insert:
+            tableName: tasks
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: title
+                  value: "Initial Task"
+              - column:
+                  name: assignee_id
+                  valueNumeric: 1
+              - column:
+                  name: status
+                  value: "PENDING"

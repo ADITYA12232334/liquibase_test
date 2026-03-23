@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: liquibase_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: taskdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d taskdb" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  liquibase:
+    image: liquibase/liquibase
+    container_name: liquibase_runner
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    volumes:
+      - ./liquibase:/liquibase/changelog
+      - ./drivers:/liquibase/lib
+
+    working_dir: /liquibase/changelog
+
+    command: >
+      --url=jdbc:postgresql://postgres:5432/taskdb --username=admin --password=admin --changelog-file=changelog/db.changelog-master.yaml update
+
+volumes:
+  postgres_data:
