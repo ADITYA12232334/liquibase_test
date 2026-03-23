@@ -45,7 +45,7 @@ jobs:
 
       - name: Run Liquibase Migration
         run: |
-          ./liquibase-bin/liquibase \
+          java -jar liquibase-bin/lib/liquibase-core.jar \
             --url=jdbc:postgresql://localhost:5432/taskdb \
             --username=admin \
             --password=admin \
