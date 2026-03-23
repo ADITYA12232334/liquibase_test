@@ -38,10 +38,7 @@ jobs:
       - name: Wait for DB
         run: sleep 10
 
-      - name: Debug
-        run: |
-          ls -R
-          ./liquibase-bin/liquibase --version
+
 
       - name: Run Liquibase Migration
         run: |
