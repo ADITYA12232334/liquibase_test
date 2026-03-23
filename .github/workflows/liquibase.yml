@@ -31,9 +31,8 @@ jobs:
       - name: Install Liquibase
         run: |
           curl -L https://github.com/liquibase/liquibase/releases/download/v4.27.0/liquibase-4.27.0.tar.gz -o liquibase.tar.gz
-          mkdir liquibase-bin
-          tar -xzf liquibase.tar.gz -C liquibase-bin --strip-components=1
-          sudo ln -s $PWD/liquibase-bin/liquibase /usr/local/bin/liquibase
+          tar -xzf liquibase.tar.gz
+          chmod +x liquibase
 
       - name: Wait for DB
         run: sleep 10
@@ -42,9 +41,9 @@ jobs:
 
       - name: Run Liquibase Migration
         run: |
-          java -jar liquibase-bin/lib/liquibase-core.jar \
+          ./liquibase \
             --url=jdbc:postgresql://localhost:5432/taskdb \
             --username=admin \
             --password=admin \
-            --changeLogFile=liquibase/changelog/db.changelog-master.yaml \
+            --changeLogFile=liquibase_files/changelog/db.changelog-master.yaml \
             update
